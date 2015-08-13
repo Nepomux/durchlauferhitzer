@@ -1,0 +1,55 @@
+---
+name: home
+url: /
+---
+
+<div class="grid-container">
+    <div ng-controller="MyController">
+        <h1>{{test}}</h1>
+        <form>
+            <div class="grid-block">
+                <div class="small-12 medium-6 grid-content">
+
+
+                    <label>
+                        <span class="inline-label">
+                            <input data-ng-model="searchitem.name" type="search" placeholder="name">
+                        </span>
+                    </label>
+
+                    <label>
+                        <span class="inline-label">
+                            <input data-ng-model="searchitem.size" type="search" placeholder="size">
+                        </span>
+                    </label>
+
+                    <label>
+                        <span class="inline-label">
+                            <input data-ng-model="searchitem.tag" type="search" placeholder="tag">
+                        </span>
+                    </label>
+
+                    <!--
+                    <label>
+                        <span class="inline-label">
+                            <input data-ng-model="mylocations" type="search" placeholder="Search a thing">
+                            <a href="#" class="button">Search</a>
+                        </span>
+                    </label>
+                    -->
+
+                </div>
+            </div>
+        </form>
+        <ul>
+            <!--<li data-ng-repeat="item in locations | filter:mylocations">-->
+            <li data-ng-repeat="item in locations | filter:{name: searchitem.name, size: searchitem.size, tag: searchitem.tag, item:'tags'}">
+                <img ng-src="{{item.picture}}" alt="{{item.name}}"/> <br/>
+                <span data-ng-repeat="(key, val) in item"> <br>
+                    {{key}}: {{val}}
+                </span>
+                <hr/>
+            </li>
+        </ul>
+    </div>
+</div>
